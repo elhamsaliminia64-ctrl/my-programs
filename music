@@ -1,0 +1,56 @@
+
+
+
+import winsound
+import time
+
+notes = {
+    'D4': 294,
+    'E4': 329,
+    'F#4': 370,
+    'G4': 392,
+    'A4': 440,
+    'B4': 494,
+    'C#5': 554,
+    'D5': 587,
+    'REST': 0
+}
+
+durations = {
+    'sixteenth': 0.15,
+    'eighth': 0.3,
+    'quarter': 0.6,
+    'half': 1.2
+}
+
+def play_note(note, duration):
+    freq = notes[note]
+    dur_ms = int(duration * 1000)
+    if freq == 0:
+        time.sleep(duration)
+    else:
+        winsound.Beep(freq, dur_ms)
+
+melody = [
+    ('D4', 'quarter'), ('A4', 'quarter'), ('B4', 'quarter'), ('F#4', 'quarter'),
+    ('G4', 'quarter'), ('D4', 'quarter'), ('G4', 'quarter'), ('A4', 'quarter'),
+
+    ('D4', 'quarter'), ('A4', 'quarter'), ('B4', 'quarter'), ('F#4', 'quarter'),
+    ('G4', 'quarter'), ('D4', 'quarter'), ('G4', 'quarter'), ('A4', 'quarter'),
+
+    ('B4', 'quarter'), ('F#4', 'quarter'), ('G4', 'quarter'), ('D4', 'quarter'),
+    ('A4', 'quarter'), ('D5', 'quarter'), ('C#5', 'quarter'), ('B4', 'quarter'),
+
+    ('A4', 'quarter'), ('F#4', 'quarter'), ('G4', 'quarter'), ('D4', 'quarter'),
+    ('REST', 'quarter'),
+
+    ('D4', 'quarter'), ('A4', 'quarter'), ('B4', 'quarter'), ('F#4', 'quarter'),
+    ('G4', 'quarter'), ('D4', 'quarter'), ('G4', 'quarter'), ('A4', 'quarter'),
+]
+
+try:
+    while True:  # حلقه بی‌نهایت
+        for note, dur in melody:
+            play_note(note, durations[dur])
+except KeyboardInterrupt:
+    print("\nپخش متوقف شد!")
